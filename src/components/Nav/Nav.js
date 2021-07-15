@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import setAxiosAuthToken from "../utils/setAxiosAuthToken";
 import "./Nav.css";
 
 export class Nav extends Component {
+    handleUserLogout = () => {
+        window.localStorage.removeItem("jwtToken");
+        setAxiosAuthToken(null);
+        this.setState({
+          user: null,
+        });
+      };
     render() {
         return (
             <div>
@@ -12,7 +20,7 @@ export class Nav extends Component {
             <ul className="menu">
               <li className="menu_list">
                 <span className="front fas fa-home" />
-                <a href="#" className="side">Contact Station</a>
+                <a href="/login"onClick={this.handleUserLogout} className="side">Contact Station</a>
               </li>
               <li className="menu_list">
                 <span className="front fas fa-info" />
@@ -23,14 +31,12 @@ export class Nav extends Component {
                 <a href="#" className="side">Duty Belt</a>
               </li>
               <li className="menu_list">
-                <span className="front fas fa-paper-plane" />
+                <span className="front fas fa-paperclip" />
                 <a href="#" className="side">10-Codes</a>
               </li>
               <li className="menu_list">
-                  <NavLink to="/login">
                 <span className="front fas fa-paper-plane" />
-                Logout</NavLink>
-
+                <a onClick={this.handleUserLogout} href="/login"  className="side">Logout</a>
               </li>
             </ul>
           </div>
