@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, NavLink } from "react-router-dom";
 import ("./Home.css")
 export class Home extends Component {
   render() {
@@ -25,6 +26,12 @@ export class Home extends Component {
       personnel may provide the evidence of such monitoring
       to law enforcement officials."
   </p>
+  <br />
+  <br />
+  <br />
+  <button>
+  <NavLink to="/login" style={{color:"black"}}>Accept</NavLink>
+  </button>
 </div>
       </div>
       
