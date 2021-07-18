@@ -4,11 +4,18 @@ import "./CurrentCallsTable.css"
 import Draggable, {DraggableCore} from 'react-draggable'
 
 export class CurrentCallsTable extends Component {
+  state={
+    curCallsArray:[]
+  }
    async componentDidMount(){
      const res = await await fetch(
-      "https://www.dallasopendata.com/resource/juse-v5tw.json?location=L B J Fwy Eb"
+      "https://www.dallasopendata.com/resource/rfyj-p8vj.json"
      )
      const data = await res.json()
+     this.setState({curCallsArray:data[0].nature_of_call})
+     console.log(data);
+     
+     
      
 
 
@@ -17,6 +24,7 @@ export class CurrentCallsTable extends Component {
         return (
             <Draggable>
             <div>
+              <h1>{this.state.curCallsArray}</h1>
             <h1><span className="blue"></span>Current Calls<span className="blue"></span> <span className="yellow">Alerts</span></h1>
             <h2>ONLY RESPOND TO ASSIGNED CALLS</h2>
             <table className="container">
