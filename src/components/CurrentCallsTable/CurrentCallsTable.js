@@ -4,6 +4,15 @@ import "./CurrentCallsTable.css"
 import Draggable, {DraggableCore} from 'react-draggable'
 
 export class CurrentCallsTable extends Component {
+   async componentDidMount(){
+     const res = await await fetch(
+      "https://www.dallasopendata.com/resource/juse-v5tw.json?location=L B J Fwy Eb"
+     )
+     const data = await res.json()
+     
+
+
+   }
     render() {
         return (
             <Draggable>

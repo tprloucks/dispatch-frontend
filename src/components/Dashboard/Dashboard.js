@@ -6,6 +6,7 @@ import PedCheck from '../PedCheck/PedCheck';
 import CurrentCallsTable from '../CurrentCallsTable/CurrentCallsTable';
 
 import "./Dashboard.css"
+import CreateCall from '../CreateCall/CreateCall';
 
 export class Dashboard extends Component {
     render() {
@@ -16,6 +17,7 @@ export class Dashboard extends Component {
                 <div><VehicleCheck/></div>
                 <div><PedCheck/></div>
                 <div><CurrentCallsTable/></div>
+                <div><CreateCall/></div>
            </div>
         )
     }
