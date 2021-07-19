@@ -13,8 +13,9 @@ export class PedCheck extends Component {
         errorMessage:""
     }
     async componentDidMount(){
-        let allPed = await axios.get("http://localhost:8080/api/ped/get-all-ped")
-       console.log(allPed);
+        const url ="https://www.dallasopendata.com/resource/juse-v5tw.json?location=L B J Fwy Eb"
+        const response = await fetch(url)
+        const data = await response.json()
         
         
         
