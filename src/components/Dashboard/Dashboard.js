@@ -17,7 +17,7 @@ export class Dashboard extends Component {
                 <div><VehicleCheck/></div>
                 <div><PedCheck/></div>
                 <div><CurrentCallsTable/></div>
-                <div><CreateCall/></div>
+                
            </div>
         )
     }

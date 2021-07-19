@@ -65,7 +65,7 @@ export class PedCheck extends Component {
                        
                         
                         
-                        placeholder="first and last name"/>
+                        placeholder="First Name, Last Name"/>
                         
                         <button type="submit">Search</button>
                         * Customize this from by clicking and dragging.
