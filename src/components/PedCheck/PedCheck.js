@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import Draggable, {DraggableCore} from 'react-draggable'
+import { Resizable, ResizableBox } from 'react-resizable';
+
 
 export class PedCheck extends Component {
    

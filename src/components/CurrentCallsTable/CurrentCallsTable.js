@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import "./CurrentCallsTable.css"
 import Draggable, {DraggableCore} from 'react-draggable'
-
+import { Resizable } from 'react-resizable'
 export class CurrentCallsTable extends Component {
   state={
     callArray:[]
@@ -10,8 +10,11 @@ export class CurrentCallsTable extends Component {
    async componentDidMount(){
       
       axios.get( "https://www.dallasopendata.com/resource/rfyj-p8vj.json?$limit=15")
+      
         .then(response =>{
+          
           if(response.status === 200 && response !=null){
+            
             this.setState({
               callArray:response.data
             })
@@ -35,6 +38,7 @@ export class CurrentCallsTable extends Component {
             <div>
               <div>
                <Draggable>
+                 <Resizable>
                   <table className="container">
                   <thead>
                  
@@ -72,7 +76,9 @@ export class CurrentCallsTable extends Component {
             </div>
             
             </table>
+            </Resizable>
             </Draggable>
+            
                  )
                 
               
