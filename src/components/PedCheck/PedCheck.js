@@ -1,28 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component , useState, useEffect} from 'react'
 import axios from 'axios'
 
 import Draggable, {DraggableCore} from 'react-draggable'
-import { Resizable, ResizableBox } from 'react-resizable';
+import Collapsible from 'react-collapsible';
 
 
 export class PedCheck extends Component {
    
     state={
-        pedArray:"",
-        pedData:"",
-        pedSearchInput:"",
-        error:null,
-        errorMessage:""
+        pedArray:[],
+        
     }
     async componentDidMount(){
-        const url ="https://www.dallasopendata.com/resource/juse-v5tw.json?location=L B J Fwy Eb"
-        const response = await fetch(url)
-        const data = await response.json()
+      
+        axios.get( "http://localhost:8080/api/ped/get-all-ped/")
         
-        
-        
-    }
-    
+          .then(response =>{
+            
+            if(response.status === 200 && response !=null){
+              
+              this.setState({
+                pedArray:response.data.payload
+              })
+              console.log(response.data);
+            }else{
+              console.log("we got a problem houston");
+            }
+          })
+          .catch(error=>{
+            console.log(error);
+          })
+       
+        }
 
     // handlePedOnChange= (event)=>{
     //     this.setState({
@@ -59,6 +68,7 @@ export class PedCheck extends Component {
         return (
             
             <div>
+              <Collapsible trigger="Start here">
                 <Draggable>
                     <form >
                         <h1>Persons Check</h1>
@@ -73,10 +83,17 @@ export class PedCheck extends Component {
                         * Customize this from by clicking and dragging.
                        
                         <div>
-                            {/* {this.state.pedArray} */}
+                            {this.state.pedArray.map((ped, index)=>{
+                                return(
+                                    <div key={ped}>
+                                        {ped.firstName}
+                                    </div>
+                                )
+                            })}
                         </div>
                     </form>
                 </Draggable>
+                </Collapsible>
             </div>
         )
     }
