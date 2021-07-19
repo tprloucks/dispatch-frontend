@@ -33,11 +33,11 @@ export class PedCheck extends Component {
        
         }
 
-    // handlePedOnChange= (event)=>{
-    //     this.setState({
-    //         pedSearchInput:event.target.value
-    //     })
-    // }
+    handlePedOnChange= (event)=>{
+        this.setState({
+            pedSearchInput:event.target.value
+        })
+    }
 
     // handleOnSubmit= async(event)=>{
     //     event.preventDefault()
