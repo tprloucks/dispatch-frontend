@@ -8,7 +8,7 @@ export class VehicleCheck extends Component {
                 <Draggable>
                     <form action="">
                         <h1>Vehicle Check</h1>
-                        <input type="text" placeholder="License Plate#" />
+                        <input type="text" placeholder="License Plate#" color="green"/>
                         * Customize this from by clicking and dragging.
 
                     </form>

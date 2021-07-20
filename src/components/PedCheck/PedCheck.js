@@ -3,79 +3,107 @@ import axios from 'axios'
 
 import Draggable, {DraggableCore} from 'react-draggable'
 import Collapsible from 'react-collapsible';
+import { isEmpty } from 'lodash';
 
 
 export class PedCheck extends Component {
    
     state={
         pedArray:[],
-        
+        pedInfo:[],
+        pedSearchInput:"",
+        inputError:"",
+
     }
+
     async componentDidMount(){
+      this.getPedInfo()
+      axios.get("http://localhost:8080/api/ped/get-all-ped/")
       
-        axios.get("http://localhost:8080/api/ped/get-all-ped/")
-        
-          .then(response =>{
+        .then(response =>{
+          
+          if(response.status === 200 && response !=null){
             
-            if(response.status === 200 && response !=null){
-              
-              this.setState({
-                pedArray:response.data.payload
-              })
-              console.log(response.data);
-            }else{
-              console.log("we got a problem houston");
-            }
+            this.setState({
+              pedArray:response.data.payload
+            })
+            console.log(response.data);
+          }else{
+            console.log("we got a problem houston");
+          }
+        })
+        .catch(error=>{
+          console.log(error);
+        })
+     
+      }
+
+    getPedInfo=()=>{
+      axios.get("http://localhost:8080/api/ped/get-all-ped/")
+        .then((response)=>{
+          const data = response.data
+          this.setState({
+            pedInfo:data
           })
-          .catch(error=>{
-            console.log(error);
-          })
-       
-        }
+          console.log('data has been recived!!');
+        })
+        .catch(()=>{
+          alert('Error retriveing data!!')
+        })
+    }
+    
+    
+    
 
     handlePedOnChange= (event)=>{
         this.setState({
-            pedSearchInput:event.target.value
-        })
+            [event.target.name]: event.target.value,
+        },
+        ()=>{
+          if(event.targe.name ==="fullName"){
+            if(isEmpty(this.state.pedSearchInput)){
+              this.setState({
+                inputError:"Field Can not be blank"
+              })
+            }else{
+              this.setState({
+                inputError:""
+              })
+            }
+          }
+        },
+        
+        )
     }
 
-    // handleOnSubmit= async(event)=>{
-    //     event.preventDefault()
-    //     if (this.state.pedSearchInput.length === 0){
-    //         this.setState({
-    //             error:true,
-    //             errorMessage:"Field can not be empty"
-    //         })
-    //     }else{
-    //         let allPed = await axios.get(
-    //             `${URL}/api/ped/get-all-ped`
-    //         )
-    //         let checkIfPedExists= this.state.pedArray.findIndex(
-    //             (item)=>
-    //             item.lastName===
-    //             this.state.pedSearchInput
-    //         )
-    //         if(checkIfPedExists > -1){
-               
-    //             this.setState({
-    //                 pedData:
-    //             })
-    //         }
-
-    //     }
-    // }
+    handleOnSubmit= async(event)=>{
+      event.preventDefault();
+  
+        try {
+          let result = await axios.get(
+            "http://localhost:8080/api/ped/get-all-ped/"
+          )
+          console.log("this is result on on submit");
+          console.log(result);
+        } catch (error) {
+          console.log(error);
+        }
+     
+    }
+  
     render() {
         return (
             
             <div>
               <Collapsible trigger="Start here">
                 <Draggable>
-                    <form >
+                    <form onSubmit={this.handleOnSubmit}>
                         <h1>Persons Check</h1>
                         <input 
+                        color="green"
                         type="text" 
-                       
-                        
+                        name="ped"
+                        onChange={this.handleOnChange}
                         
                         placeholder="Full Name"/>
                         
@@ -83,10 +111,12 @@ export class PedCheck extends Component {
                         * Customize this from by clicking and dragging.
                        
                         <div>
+                          
+
                             {this.state.pedArray.map((ped, index)=>{
                                 return(
                                     <div key={ped}>
-                                        {ped.firstName}
+                                      {ped.lastName}, {ped.firstName}
                                     </div>
                                 )
                             })}
