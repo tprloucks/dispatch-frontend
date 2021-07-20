@@ -13,7 +13,7 @@ export class PedCheck extends Component {
     }
     async componentDidMount(){
       
-        axios.get( "http://localhost:8080/api/ped/get-all-ped/")
+        axios.get("http://localhost:8080/api/ped/get-all-ped/")
         
           .then(response =>{
             
@@ -77,7 +77,7 @@ export class PedCheck extends Component {
                        
                         
                         
-                        placeholder="First Name, Last Name"/>
+                        placeholder="Full Name"/>
                         
                         <button type="submit">Search</button>
                         * Customize this from by clicking and dragging.

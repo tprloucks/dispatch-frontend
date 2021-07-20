@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav'
 import VehicleCheck from '../VehicleCheck/VehicleCheck';
 import PedCheck from '../PedCheck/PedCheck';
 import CurrentCallsTable from '../CurrentCallsTable/CurrentCallsTable';
+// import Map from '../Map/Map';
 
 import "./Dashboard.css"
 import CreateCall from '../CreateCall/CreateCall';
@@ -14,10 +15,11 @@ export class Dashboard extends Component {
             <div>
                 
                <div><Nav/></div>
-                <div><VehicleCheck/></div>
-                <div><PedCheck/></div>
-                <div><CurrentCallsTable/></div>
+               <div><CurrentCallsTable/></div>
+                <div><VehicleCheck/><PedCheck/></div>
                 
+                
+                {/* <div><Map/></div> */}
            </div>
         )
     }
