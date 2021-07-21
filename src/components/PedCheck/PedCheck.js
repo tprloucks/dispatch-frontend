@@ -97,11 +97,15 @@ export class PedCheck extends Component {
                         * Customize this from by clicking and dragging.
                        
                         <div>
-                          <p color="EA6377">{this.state.pedArray.firstName}, {this.state.pedArray.lastName}</p>
-                          <p>{this.state.pedArray.DOB}</p>
-                          <p>{this.state.pedArray.address}</p>
-                          <p>{this.state.pedArray.warrants}</p>
+                        Name:<h1> <p color="red">{this.state.pedArray.firstName} {this.state.pedArray.lastName}</p> </h1>
+                          <br />
+                          DOB:<h1><p> {this.state.pedArray.DOB}</p> </h1>
+                          <br />
+                          Address:<h1> <p> {this.state.pedArray.address}</p> </h1>
+                          <br />
+                          Warrants: <h1><p> {this.state.pedArray.warrants}</p> </h1>
 
+                          
                             
 
                             {/* {this.state.pedArray.map((ped, index)=>{

@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav'
 import VehicleCheck from '../VehicleCheck/VehicleCheck';
 import PedCheck from '../PedCheck/PedCheck';
 import CurrentCallsTable from '../CurrentCallsTable/CurrentCallsTable';
+import Code from '../Code/Code';
 // import Map from '../Map/Map';
 
 import "./Dashboard.css"
@@ -17,7 +18,7 @@ export class Dashboard extends Component {
                <div><Nav/></div>
                <div><CurrentCallsTable/></div>
                 <div><VehicleCheck/><PedCheck/></div>
-                
+                <div><Code/></div>
                 
                 {/* <div><Map/></div> */}
            </div>
