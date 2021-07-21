@@ -39,6 +39,7 @@ export class CurrentCallsTable extends Component {
               <div>
                <Draggable>
                  <Resizable>
+                   
                   <table className="container">
                   <thead>
                  

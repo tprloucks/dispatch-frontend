@@ -18,15 +18,15 @@ export class PedCheck extends Component {
 
     async componentDidMount(){
       this.getPedInfo()
-      axios.get("http://localhost:8080/api/ped/get-all-ped/")
+      axios.get("http://localhost:8080/api/ped/get-by-id/60f18ee364c6af637cd4bc03")
       
         .then(response =>{
           
           if(response.status === 200 && response !=null){
             
-            this.setState({
-              pedArray:response.data.payload
-            })
+            // this.setState({
+            //   pedArray:response.data.payload
+            // })
             console.log(response.data);
           }else{
             console.log("we got a problem houston");
@@ -39,12 +39,18 @@ export class PedCheck extends Component {
       }
 
     getPedInfo=()=>{
-      axios.get("http://localhost:8080/api/ped/get-all-ped/")
+      axios.get(`http://localhost:8080/api/ped/get-by-id/${this.state.pedSearchInput}`)
         .then((response)=>{
-          const data = response.data
+          const data = response.data.payload
+          // if (data.warrants.length > 0){
+          //   alert("Warrants Found!")
+          // }
           this.setState({
-            pedInfo:data
+            pedArray:data
           })
+          if (data.wanted===true){
+            alert("Warrants Found!")
+          }
           console.log('data has been recived!!');
         })
         .catch(()=>{
@@ -56,38 +62,18 @@ export class PedCheck extends Component {
     
 
     handlePedOnChange= (event)=>{
-        this.setState({
-            [event.target.name]: event.target.value,
-        },
-        ()=>{
-          if(event.targe.name ==="fullName"){
-            if(isEmpty(this.state.pedSearchInput)){
-              this.setState({
-                inputError:"Field Can not be blank"
-              })
-            }else{
-              this.setState({
-                inputError:""
-              })
-            }
-          }
-        },
-        
-        )
-    }
+      this.setState({
+          pedSearchInput:event.target.value
+      })
+      
+  }
+    
 
     handleOnSubmit= async(event)=>{
       event.preventDefault();
-  
-        try {
-          let result = await axios.get(
-            "http://localhost:8080/api/ped/get-all-ped/"
-          )
-          console.log("this is result on on submit");
-          console.log(result);
-        } catch (error) {
-          console.log(error);
-        }
+      this.getPedInfo()
+     
+        
      
     }
   
@@ -102,8 +88,8 @@ export class PedCheck extends Component {
                         <input 
                         color="green"
                         type="text" 
-                        name="ped"
-                        onChange={this.handleOnChange}
+                        name="pedInput"
+                        onChange={this.handlePedOnChange}
                         
                         placeholder="Full Name"/>
                         
@@ -111,15 +97,20 @@ export class PedCheck extends Component {
                         * Customize this from by clicking and dragging.
                        
                         <div>
-                          
+                          <p color="EA6377">{this.state.pedArray.firstName}, {this.state.pedArray.lastName}</p>
+                          <p>{this.state.pedArray.DOB}</p>
+                          <p>{this.state.pedArray.address}</p>
+                          <p>{this.state.pedArray.warrants}</p>
 
-                            {this.state.pedArray.map((ped, index)=>{
+                            
+
+                            {/* {this.state.pedArray.map((ped, index)=>{
                                 return(
                                     <div key={ped}>
                                       {ped.lastName}, {ped.firstName}
                                     </div>
                                 )
-                            })}
+                            })} */}
                         </div>
                     </form>
                 </Draggable>
