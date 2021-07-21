@@ -4,6 +4,7 @@ import axios from 'axios'
 import Draggable, {DraggableCore} from 'react-draggable'
 import Collapsible from 'react-collapsible';
 import { isEmpty } from 'lodash';
+import { Button } from '@material-ui/core';
 
 
 export class PedCheck extends Component {
@@ -93,7 +94,8 @@ export class PedCheck extends Component {
                         
                         placeholder="Full Name"/>
                         
-                        <button type="submit">Search</button>
+                        <Button variant="outlined" type="submit">Search</Button>
+                        <br />
                         * Customize this from by clicking and dragging.
                        
                         <div>
