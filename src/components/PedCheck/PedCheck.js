@@ -40,7 +40,7 @@ export class PedCheck extends Component {
       }
 
     getPedInfo=()=>{
-      axios.get(`http://localhost:8080/api/ped/get-by-id/${this.state.pedSearchInput}`)
+      axios.get(`http://localhost:8080/api/ped/?firstName=michael`)
         .then((response)=>{
           const data = response.data.payload
           // if (data.warrants.length > 0){
@@ -52,10 +52,10 @@ export class PedCheck extends Component {
           if (data.wanted===true){
             alert("Warrants Found!")
           }
-          console.log('data has been recived!!');
+          console.log('data has been received!!');
         })
         .catch(()=>{
-          alert('Error retriveing data!!')
+          alert('Error retrieving data!!')
         })
     }
     
@@ -96,7 +96,7 @@ export class PedCheck extends Component {
                         
                         <Button variant="outlined" type="submit">Search</Button>
                         <br />
-                        * Customize this from by clicking and dragging.
+                       
                        
                         <div>
                         Name:<h1> <p color="red">{this.state.pedArray.firstName} {this.state.pedArray.lastName}</p> </h1>
@@ -108,7 +108,7 @@ export class PedCheck extends Component {
                           Warrants: <h1><p> {this.state.pedArray.warrants}</p> </h1>
 
                           
-                            
+                            ***********click to drag***********
 
                             {/* {this.state.pedArray.map((ped, index)=>{
                                 return(

@@ -36,8 +36,8 @@ export class Code extends Component {
 10-106 - Secure
 <br />
 10-999 - Officer down
-
-                    * Customize this from by clicking and dragging.
+<br />
+*******click to drag********
                 </form>
             </Draggable>
             </div>
