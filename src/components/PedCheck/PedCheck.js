@@ -17,32 +17,32 @@ export class PedCheck extends Component {
 
     }
 
-    async componentDidMount(){
-      this.getPedInfo()
-      axios.get("http://localhost:8080/api/ped/get-by-id/60f18ee364c6af637cd4bc03")
+    // async componentDidMount(){
       
-        .then(response =>{
+    //   axios.get(`http://localhost:8080/api/ped/get-by-name?fullName=`)
+      
+    //     .then(response =>{
           
-          if(response.status === 200 && response !=null){
+    //       if(response.status === 200 && response !=null){
             
-            // this.setState({
-            //   pedArray:response.data.payload
-            // })
-            console.log(response.data);
-          }else{
-            console.log("we got a problem houston");
-          }
-        })
-        .catch(error=>{
-          console.log(error);
-        })
+    //         // this.setState({
+    //         //   pedArray:response.data.payload
+    //         // })
+    //         console.log(response.data);
+    //       }else{
+    //         console.log("we got a problem houston");
+    //       }
+    //     })
+    //     .catch(error=>{
+    //       console.log(error);
+    //     })
      
-      }
+    //   }
 
     getPedInfo=()=>{
-      axios.get(`http://localhost:8080/api/ped/?firstName=michael`)
+      axios.get(`http://localhost:8080/api/ped/get-by-name?fullName=${this.state.pedSearchInput}`)
         .then((response)=>{
-          const data = response.data.payload
+          const data = response.data[0]
           // if (data.warrants.length > 0){
           //   alert("Warrants Found!")
           // }
@@ -99,13 +99,17 @@ export class PedCheck extends Component {
                        
                        
                         <div>
-                        Name:<h1> <p color="red">{this.state.pedArray.firstName} {this.state.pedArray.lastName}</p> </h1>
+                        <h1><p> {this.state.pedArray.fullName}</p> </h1>
+                        DOB: <h1><p> {this.state.pedArray.DOB}</p> </h1>
+                        Address: <h1><p> {this.state.pedArray.address}</p> </h1>
+                        Status: <h1><p> {this.state.pedArray.license}</p> </h1>
+                        Warrants: <h1><p> {this.state.pedArray.wanted}</p> </h1>
                           <br />
-                          DOB:<h1><p> {this.state.pedArray.DOB}</p> </h1>
+                          
                           <br />
-                          Address:<h1> <p> {this.state.pedArray.address}</p> </h1>
+                          {/* Address:<h1> <p> {this.state.pedArray.address}</p> </h1>
                           <br />
-                          Warrants: <h1><p> {this.state.pedArray.warrants}</p> </h1>
+                          Warrants: <h1><p> {this.state.pedArray.warrants}</p> </h1> */}
 
                           
                             ***********click to drag***********
