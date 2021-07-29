@@ -4,21 +4,27 @@ import Nav from '../Nav/Nav'
 import VehicleCheck from '../VehicleCheck/VehicleCheck';
 import PedCheck from '../PedCheck/PedCheck';
 import CurrentCallsTable from '../CurrentCallsTable/CurrentCallsTable';
-import Code from '../Code/Code';
+import Officer from "../Officers/officer"
+import Map from "../Map/Map"
+
+
 // import Map from '../Map/Map';
 
 import "./Dashboard.css"
-import CreateCall from '../CreateCall/CreateCall';
 
 export class Dashboard extends Component {
     render() {
         return (
             <div>
+                 
+                 <Map></Map>
+                <CurrentCallsTable/>
+                <VehicleCheck/>
+                <PedCheck/>
+                <Nav/>
+                <Officer/>
                 
-               <div><Nav/></div>
-               <div><CurrentCallsTable/></div>
-                <div><VehicleCheck/><PedCheck/></div>
-                <div><Code/></div>
+                
                 
                 {/* <div><Map/></div> */}
            </div>

@@ -1,27 +1,33 @@
-// import React, { Component } from 'react'
+import React, { useState } from 'react'
+import Draggable from 'react-draggable'
+import ReactMapGL from "react-map-gl"
 
+export default function Map() {
+    const [viewport, setViewport]=useState({
+        latitude:32.78306,
+        longitude:-96.80667,
+        zoom:10,
+        width:"100vw",
+        height:"90vh",
+        marginLeft:"20px"
+    })
+    return(<div>
+        
+            <div>
+        <ReactMapGL 
+        {...viewport} 
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/tprloucks/ckrnw8nnnawfo17o2135rug0f"
+        onViewportChange={viewport=>{
+            setViewport(viewport)
+        }}
+        >
+            
+            
+        </ReactMapGL>
+        </div>
+        
+    </div>
+    )
+}
 
-// // import{
-// //     GoogleMap,
-// //     useLoadScript,
-// //     Marker,
-// //     InfoWindow,
-// // }from "rect-google-maps/api"
-// // import {formatRelative} from "date-fns"
-
-
-// export class Map extends Component {
-//     render() {
-//         const {isLoaded, loadError} = useLoadScript({
-//             googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-//             libraries:['places']
-//         })
-//         return (
-//             <div>
-//                 map
-//             </div>
-//         )
-//     }
-// }
-
-// export default Map

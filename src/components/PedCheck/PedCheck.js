@@ -82,7 +82,7 @@ export class PedCheck extends Component {
         return (
             
             <div>
-              <Collapsible trigger="Start here">
+              
                 <Draggable>
                     <form onSubmit={this.handleOnSubmit}>
                         <h1>Persons Check</h1>
@@ -124,7 +124,7 @@ export class PedCheck extends Component {
                         </div>
                     </form>
                 </Draggable>
-                </Collapsible>
+               
             </div>
         )
     }
